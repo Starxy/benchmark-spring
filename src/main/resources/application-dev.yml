@@ -1,0 +1,53 @@
+spring:
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+  datasource:
+    druid:
+      stat-view-servlet:
+        allow:
+        enabled: false
+        url-pattern: /druidxxx/*
+        login-username: admin100
+        login-password: xx2987aa
+    dynamic:
+      primary: master
+      strict: false
+      p6spy: false # sql性能监控,默认false,线上关闭。
+      druid:
+        initial-size: 10
+        max-active: 1000
+        min-idle: 10
+        max-wait: 6000
+        pool-prepared-statements: true
+        max-pool-prepared-statement-per-connection-size: 20
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 300000
+        #mysql需要打开注释
+        validationQuery: SELECT 1
+        #Oracle需要打开注释
+        #validation-query: SELECT 1 FROM DUAL
+        test-while-idle: true
+        test-on-borrow: false
+        test-on-return: false
+        filters: stat,wall
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 100000
+          merge-sql: false
+        wall:
+          none-base-statement-allow: true
+          multi-statement-allow: true
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://10.1.2.2:3306/weibo?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+          username: root
+          password: CRFMrX~QsmJM%m~Tuk3-#z}^
+      strategy: com.baomidou.dynamic.datasource.strategy.LoadBalanceDynamicDataSourceStrategy
+  redis:
+    host: 127.0.0.1 # Redis服务器地址
+    database: 0 # Redis数据库索引（默认为0）
+    port: 6379 # Redis服务器连接端口
+    password:  # Redis服务器连接密码（默认为空）
+    timeout: 10000ms # 连接超时时间（毫秒）
+

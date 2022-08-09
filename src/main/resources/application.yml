@@ -1,0 +1,24 @@
+server:
+  port: 8089
+  servlet:
+    context-path:
+  tomcat:
+    threads:
+      min-spare: 10
+      max: 400
+    max-connections: 10000
+spring:
+  application:
+    name: exam-web
+  main:
+    allow-circular-references: true
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 100MB #限制文件上传大小为10M
+      max-request-size: 100MB
+  profiles:
+    active: dev
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
